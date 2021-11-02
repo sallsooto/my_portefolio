@@ -5,7 +5,6 @@ import four from '../assets/svg/projects/four.svg'
 import five from '../assets/svg/projects/five.svg'
 import six from '../assets/svg/projects/six.svg'
 import seven from '../assets/svg/projects/seven.svg'
-import eight from '../assets/svg/projects/eight.svg'
 
 
 export const projectsData = [
@@ -72,15 +71,6 @@ export const projectsData = [
         //demo: '',
         image: seven
     },
-    // {
-    //     id: 8,
-    //     projectName: 'Car Pooling System',
-    //     projectDesc: 'The carpooling system merges multiple people in a car which leads to meet new people, reduces pollution',
-    //     tags: ['Flutter', 'React'],
-    //     code: '',
-    //     demo: '',
-    //     image: eight
-    // },
 ]
 
 /* 

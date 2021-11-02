@@ -138,10 +138,12 @@ function Contacts() {
            };
         emailjs.send(`service_cwa75yn`, 'template_7bgndmx', templateParams, 'user_xTzaG566mNVLuwtzqEJuc')
         .then((result) => {
+            setSuccess(true)
         alert("Message Sent, I will get back to you shortly", result.text);
         },
         (error) => {
             console.log(error);
+            setErrMsg(true)
         alert("An error occurred, Please try again", error.text);
         });
         };
