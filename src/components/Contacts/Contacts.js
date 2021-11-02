@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Snackbar, IconButton, SnackbarContent } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import axios from 'axios';
-import isEmail from 'validator/lib/isEmail';
+import emailjs from 'emailjs-com'; 
 import { makeStyles } from '@material-ui/core/styles';
 import {
     FaTwitter,
@@ -130,35 +129,22 @@ function Contacts() {
     const classes = useStyles();
 
     const handleContactForm = (e) => {
-        e.preventDefault();
-
-        if (name && email && message) {
-            if (isEmail(email)) {
-                const responseData = {
-                    name: name,
-                    email: email,
-                    message: message,
-                };
-
-                axios.post(contactsData.sheetAPI, responseData).then((res) => {
-                    console.log('success');
-                    setSuccess(true);
-                    setErrMsg('');
-
-                    setName('');
-                    setEmail('');
-                    setMessage('');
-                    setOpen(false);
-                });
-            } else {
-                setErrMsg('Invalid email');
-                setOpen(true);
-            }
-        } else {
-            setErrMsg('Enter all the fields');
-            setOpen(true);
-        }
-    };
+        e.preventDefault(); // Prevents default refresh by the browser
+        console.log(e.target);
+        let templateParams = {
+            Name: name,
+            Email: email,
+            Message: message,
+           };
+        emailjs.send(`service_cwa75yn`, 'template_7bgndmx', templateParams, 'user_xTzaG566mNVLuwtzqEJuc')
+        .then((result) => {
+        alert("Message Sent, I will get back to you shortly", result.text);
+        },
+        (error) => {
+            console.log(error);
+        alert("An error occurred, Please try again", error.text);
+        });
+        };
 
     return (
         <div
