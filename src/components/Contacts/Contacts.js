@@ -130,22 +130,26 @@ function Contacts() {
 
     const handleContactForm = (e) => {
         e.preventDefault(); // Prevents default refresh by the browser
-        console.log(e.target);
-        let templateParams = {
-            Name: name,
-            Email: email,
-            Message: message,
-           };
-        emailjs.send(`service_cwa75yn`, 'template_7bgndmx', templateParams, 'user_xTzaG566mNVLuwtzqEJuc')
-        .then((result) => {
-            setSuccess(true)
-        alert("Message Sent, I will get back to you shortly", result.text);
-        },
-        (error) => {
-            console.log(error);
-            setErrMsg(true)
-        alert("An error occurred, Please try again", error.text);
-        });
+        if(!name || !email || !message)
+            alert("All fields are required");
+        else{
+            console.log("email "+email + name + message)
+            let templateParams = {
+                Name: name,
+                Email: email,
+                Message: message,
+               };
+            emailjs.send(`service_cwa75yn`, 'template_7bgndmx', templateParams, 'user_xTzaG566mNVLuwtzqEJuc')
+            .then((result) => {
+                setSuccess(true)
+            alert("Message Sent, I will get back to you shortly", result.text);
+            },
+            (error) => {
+                console.log(error);
+                setErrMsg(true)
+            alert("An error occurred, Please try again", error.text);
+            });
+        } 
         };
 
     return (
